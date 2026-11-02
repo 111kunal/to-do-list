@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+app.use(express.static("public"));
 
 let todos = [
     {id:1,text:"Learn backend basics"}
@@ -9,7 +10,7 @@ let todos = [
 let nextId = 2;
 
 app.get("/api/todos" , (req, res) => {
-    res.json(todo);
+    res.json(todos);
 });
 
 app.get('/api/hello',(req,res)=>{
@@ -23,7 +24,7 @@ app.post("/api/todos", (req,res) => {
     }
 
     const newtodo = {id:nextId++,text:text};
-    todos.append(newtodo);
+    todos.push(newtodo);
     res.status(200).json(newtodo);
 })
 
